@@ -1,10 +1,15 @@
 const notepad = document.querySelector(".notepad");
 
+let isInside = false;
 
-notepad.addEventListener("mouseover", (e) => {
-    const newDiv = document.createElement("div");
-    newDiv.style.position = "fixed";
+notepad.addEventListener("mousemove", (e) => {
+
+    isInside = true;
+
     if (e.target.className === "notepad") {
+        const newDiv = document.createElement("div");
+        newDiv.style.position = "fixed";
+
         newDiv.style.left = e.clientX + 'px';
         newDiv.style.top = e.clientY + 'px';
         newDiv.style.width = '10px';
@@ -13,8 +18,12 @@ notepad.addEventListener("mouseover", (e) => {
     
         notepad.appendChild(newDiv);
     }
+
+
 })
 
 notepad.addEventListener("mouseout", () => {
+
+    isInside = false;
 
 })
