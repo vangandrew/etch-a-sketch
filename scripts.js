@@ -13,10 +13,6 @@ function createGrid(input) {
         notepad.innerHTML = '';
         return alert("100 is the max grid amount... Try again!")
     }
-    if (input < 16) {
-        notepad.innerHTML = '';
-        return alert("16 is the minimum grid amount... Try again!")
-    }
 
     const gridAmount = input * input;
     const notepadWidth = notepad.style.width = `${desiredWidth}px`;
@@ -32,7 +28,7 @@ function createGrid(input) {
     }
 }
 
-createGrid(50);
+createGrid(2);
 
 
 
