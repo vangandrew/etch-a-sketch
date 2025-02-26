@@ -3,28 +3,36 @@ const notepad = document.querySelector(".notepad");
 let isInside = false;
 
 function createGrid(input) {
-    const cellSize = 25;
     const gridInput = input;
+    const desiredWidth = 800;
+    const desiredHeight = 800;
 
     notepad.innerHTML = '';
 
     if (input > 100) {
-        return prompt("100 is the max grid amount... Try again!")
+        notepad.innerHTML = '';
+        return alert("100 is the max grid amount... Try again!")
+    }
+    if (input < 16) {
+        notepad.innerHTML = '';
+        return alert("16 is the minimum grid amount... Try again!")
     }
 
     const gridAmount = input * input;
-    notepad.style.width = `${gridInput} * ${cellSize}px`;
-    notepad.style.height = `${gridInput} * ${cellSize}px`;
+    const notepadWidth = notepad.style.width = `${desiredWidth}px`;
+    const notepadHeight = notepad.style.height = `${desiredHeight}px`;
+    const cellWidth = (desiredWidth / input) + 'px';
+    const cellHeight = (desiredHeight / input) + 'px';
 
     for (let i = 0; i < gridAmount; i++) {
         const squareDiv = document.createElement("div");
-        squareDiv.style.width = `${cellSize}px`;
-        squareDiv.style.height = `${cellSize}px`;
+        squareDiv.style.width = cellWidth;
+        squareDiv.style.height = cellHeight;
         notepad.append(squareDiv);
     }
 }
 
-createGrid(16);
+createGrid(50);
 
 
 
