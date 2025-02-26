@@ -30,16 +30,12 @@ body {
 
 .notepad {
     background-color: pink;
-    width: 450px;
-    height: 350px;
     display: flex;
     flex-wrap: wrap;
 }
 
 .notepad>div {
     border: 1px solid black;
-    width: 25px;
-    height: 25px;
 }
 
 .options {
