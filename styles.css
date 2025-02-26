@@ -36,6 +36,10 @@ body {
     flex-wrap: wrap;
 }
 
+.notepad>div {
+    width: 100%;
+}
+
 .options {
     background-color: green;
     width: inherit;
