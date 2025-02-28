@@ -28,7 +28,7 @@ function createGrid(input) {
     }
 }
 
-createGrid(2);
+createGrid(16);
 
 
 
