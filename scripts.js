@@ -1,4 +1,5 @@
 const notepad = document.querySelector(".notepad");
+const menuIconButton = document.querySelector("[data-menu-icon-btn]")
 
 let isInside = false;
 
@@ -31,7 +32,6 @@ function createGrid(input) {
 createGrid(16);
 
 
-
 notepad.addEventListener("mousemove", (e) => {
 
     isInside = true;
@@ -46,4 +46,8 @@ notepad.addEventListener("mouseout", () => {
 
     isInside = false;
 
+})
+
+menuIconButton.addEventListener("click", () => {
+    // Open/close the sidebar
 })
