@@ -5,6 +5,7 @@
 }
 
 :root {
+    --accent-color: rgb(52, 152, 219);
     --lightest-gray: rgb(249, 249, 249);
     --light-gray: rgb(144, 144, 144);
     --medium-gray: rgb(96, 96, 96);
@@ -59,7 +60,6 @@
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
     height: var(--header-height);
     padding: 0 0.5rem;
-    margin-bottom: 1rem;
 }
 
 .menu-icon-btn {
@@ -77,23 +77,44 @@
     color: var(--dark-gray);
 }
 
-.sidebar.open {
-
-}
-
 .sidebar {
     overflow-x: hidden;
-    /* width: 50px; */
     height: calc(100vh - var(--header-height));
     border-right: 1px solid var(--light-gray);
-    margin-top: -1rem;
-    padding: 1rem;
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.sidebar .top-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar .hidden-sidebar {
+    display: none;
+}
+
+.sidebar.open .hidden-sidebar {
+    display: block;
+}
+
+.sidebar .project-logo {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+.sidebar .project-logo > img {
+    width: 100%;
+    height: 100%;
 }
 
 .middle-sidebar {
+    width: 100%;
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
@@ -107,4 +128,53 @@
 .content {
     display: flex;
     margin: 0 3rem;
+}
+
+.sidebar-list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.sidebar-list-item {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.sidebar-list-item.active .sidebar-link  {
+    color: var(--accent-color);
+    background-color: var(--lightest-gray);
+    border-left: 2px solid var(--accent-color);
+}
+
+.sidebar-link {
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--light-gray);
+}
+
+.sidebar-icon {
+    font-size: 24px;
+}
+
+.sidebar.open .sidebar-link-text {
+    display: block;
+}
+
+.sidebar .sidebar-link-text {
+    display: none;
+}
+
+.top-sidebar {
+    margin-bottom: 24px;
 }
