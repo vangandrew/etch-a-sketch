@@ -1,7 +1,7 @@
 const notepad = document.querySelector(".notepad");
 const menuIconButton = document.querySelector("[data-menu-icon-btn]");
 const sidebar = document.querySelector("[data-sidebar]");
-const sidebarListItem = document.querySelector(".sidebar-list-item");
+const sidebarListItems = document.querySelectorAll(".sidebar-list-item");
 
 let isInside = false;
 
@@ -55,8 +55,17 @@ menuIconButton.addEventListener("click", () => {
     sidebar.classList.toggle("open");
 })
 
-sidebarListItem.addEventListener("click", (e) => {
-    if (e.target.className === sidebarListItem) {
-        e.target.className.toggle("active");
-    }
+sidebarListItems.forEach(li => {
+    li.addEventListener("click", () => {
+        
+        if (li.classList.contains("active")) {
+            li.classList.remove("active");
+        }
+        else if (!li.classList.contains("active")) {
+            document.querySelector(".active")?.classList.remove("active");
+            li.classList.add("active");
+        } 
+        
+        // li.classList.add("active");
+    })
 })
