@@ -65,7 +65,5 @@ sidebarListItems.forEach(li => {
             document.querySelector(".active")?.classList.remove("active");
             li.classList.add("active");
         } 
-        
-        // li.classList.add("active");
     })
 })

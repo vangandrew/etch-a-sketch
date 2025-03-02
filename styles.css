@@ -80,7 +80,7 @@
 }
 
 .sidebar {
-    width: 60px;
+    width: 75px;
     overflow-x: hidden;
     height: calc(100vh - var(--header-height));
     border-right: 1px solid var(--light-gray);
