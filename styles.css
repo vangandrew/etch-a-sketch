@@ -78,6 +78,7 @@
 }
 
 .sidebar {
+    width: 60px;
     overflow-x: hidden;
     height: calc(100vh - var(--header-height));
     border-right: 1px solid var(--light-gray);
@@ -111,6 +112,12 @@
 .sidebar .project-logo > img {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+}
+
+.sidebar.open .project-logo {
+    width: 100px;
+    height: 100px;
 }
 
 .middle-sidebar {
@@ -142,25 +149,37 @@
 
 .sidebar-list-item {
     width: 100%;
+    position: relative;
     list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
 }
 
 .sidebar-list-item.active .sidebar-link  {
     color: var(--accent-color);
     background-color: var(--lightest-gray);
-    border-left: 2px solid var(--accent-color);
+}
+
+.sidebar-list-item.active::before {
+    content: "";
+    background-color: var(--accent-color);
+    height: 100%;
+    left: 0;
+    width: 4px;
+    position: absolute;
 }
 
 .sidebar-link {
     width: 100%;
+    padding: 0.5rem 0;
     text-decoration: none;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
     color: var(--light-gray);
+}
+
+.sidebar.open .sidebar-link {
+    justify-content: start;
+    padding-left: 1rem;
 }
 
 .sidebar-icon {
@@ -177,4 +196,25 @@
 
 .top-sidebar {
     margin-bottom: 24px;
+}
+
+.sidebar.open {
+    width: 248px;
+}
+
+.sidebar.open .sidebar-link {
+    gap: 24px;
+}
+
+.project-header {
+    color: var(--dark-gray);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+    margin-top: 1rem;
+}
+
+.project-name {
+    color: var(--medium-gray);
+    font-size: 1rem;
 }
