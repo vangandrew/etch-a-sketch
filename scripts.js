@@ -1,5 +1,6 @@
 const notepad = document.querySelector(".notepad");
-const menuIconButton = document.querySelector("[data-menu-icon-btn]")
+const menuIconButton = document.querySelector("[data-menu-icon-btn]");
+const sidebar = document.querySelector("[data-sidebar]")
 
 let isInside = false;
 
@@ -50,4 +51,5 @@ notepad.addEventListener("mouseout", () => {
 
 menuIconButton.addEventListener("click", () => {
     // Open/close the sidebar
+    sidebar.classList.toggle("open")
 })
