@@ -230,3 +230,20 @@
     color: var(--medium-gray);
     font-size: 1rem;
 }
+
+.sidebar-link-text.color-parent {
+    position: relative;
+    display: flex;
+}
+
+.color-picker {
+    display: none;
+}
+
+.color-picker.active-color {
+    display: block;
+    position: absolute;
+    right: 50px;
+    background-color: cadetblue;
+    padding: 1rem 1.5rem;
+}

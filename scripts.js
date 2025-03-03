@@ -2,8 +2,10 @@ const notepad = document.querySelector(".notepad");
 const menuIconButton = document.querySelector("[data-menu-icon-btn]");
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarListItems = document.querySelectorAll(".sidebar-list-item");
+const colorPicker = document.getElementById("input");
 
 let currentAction = null;
+
 
 function initialGrid() {
     const gridSize = 16 * 16;
@@ -55,7 +57,7 @@ function createGrid() {
 
 function draw(e) {
     if (e.target.tagName === "DIV") {
-        e.target.style.backgroundColor = 'lightblue';
+        e.target.style.backgroundColor = generateColor();
     }
 }
 
@@ -85,6 +87,10 @@ function reset() {
     });
 }
 
+function generateColor() {
+    const color = colorPicker.value;
+    return color;
+}
 
 notepad.addEventListener("mousemove", (e) => {
 
@@ -98,6 +104,8 @@ menuIconButton.addEventListener("click", () => {
     // Open/close the sidebar
     sidebar.classList.toggle("open");
 })
+
+colorPicker.addEventListener("input", generateColor)
 
 sidebarListItems.forEach(li => {
     li.addEventListener("click", (e) => {
@@ -120,16 +128,16 @@ sidebarListItems.forEach(li => {
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
                 createGrid();
                 currentAction = null;
-            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "eraser") {
+            } else if (e.target.tagName === "SPAN" && e.target.id === "eraser" || e.target.tagName === "DIV" && e.target.id === "eraser") {
                 currentAction = eraser;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "draw") {
+            } else if (e.target.tagName === "SPAN" && e.target.id === "draw" || e.target.tagName === "DIV" && e.target.id === "draw") {
                 currentAction = draw;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "rgba") {
+            } else if (e.target.tagName === "SPAN" && e.target.id === "rgba" || e.target.tagName === "DIV" && e.target.id === "rgba") {
                 currentAction = rgba;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "reset") {
+            } else if (e.target.tagName === "SPAN" && e.target.id === "reset" || e.target.tagName === "DIV" && e.target.id === "reset") {
                 currentAction = null;
                 reset();
             }
