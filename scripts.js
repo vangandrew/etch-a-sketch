@@ -25,7 +25,6 @@ function initialGrid() {
         squareDiv.style.height = cellHeight;
         notepad.append(squareDiv);
     }
-
 }
 
 function createGrid() {
@@ -111,6 +110,8 @@ sidebarListItems.forEach(li => {
     li.addEventListener("click", (e) => {
         /* If the list item contains the class "active", simply remove it */
         if (li.classList.contains("active")) {
+            const colorPickerContainer = document.querySelector(".color-picker");
+            colorPickerContainer.classList.remove("active-color");
             li.classList.remove("active");
             currentAction = null;
             console.log("Action cleared!")
@@ -126,12 +127,14 @@ sidebarListItems.forEach(li => {
             console.log(e.target);
             console.log(currentAction);
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
-                createGrid();
                 currentAction = null;
+                createGrid();
             } else if (e.target.tagName === "SPAN" && e.target.id === "eraser" || e.target.tagName === "DIV" && e.target.id === "eraser") {
                 currentAction = eraser;
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw" || e.target.tagName === "DIV" && e.target.id === "draw") {
+                const colorPickerContainer = document.querySelector(".color-picker");
+                colorPickerContainer.classList.add("active-color");
                 currentAction = draw;
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba" || e.target.tagName === "DIV" && e.target.id === "rgba") {
@@ -151,4 +154,4 @@ sidebarListItems.forEach(li => {
     automatically "active" class the draw mode and let the user draw on the new grid
 */
 
-initialGrid()
+initialGrid();
