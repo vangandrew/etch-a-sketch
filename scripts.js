@@ -88,7 +88,7 @@ function reset() {
 
 notepad.addEventListener("mousemove", (e) => {
 
-    if (e.target.tagName === "DIV" && currentAction) {
+    if (e.target !== notepad && e.target.tagName === "DIV" && currentAction) {
         currentAction(e);
     }
 
