@@ -31,20 +31,16 @@ function createGrid(input) {
     }
 }
 
-function draw() {
-    notepad.addEventListener("mousemove", (e) => {
-        if (e.target.tagName === "DIV") {
-            e.target.style.backgroundColor = 'lightblue';
-        }
-    })
+function draw(e) {
+    if (e.target.tagName === "DIV") {
+        e.target.style.backgroundColor = 'lightblue';
+    }
 }
 
-function eraser () {
-    notepad.addEventListener("mousemove", (e) => {
-        if (e.target.tagName === "DIV") {
-            e.target.style.backgroundColor = '';
-        }
-    })
+function eraser(e) {
+    if (e.target.tagName === "DIV") {
+        e.target.style.backgroundColor = '';
+    }
 }
 
 function rgba() {
@@ -59,7 +55,11 @@ function rgbaRemove() {
 notepad.addEventListener("mousemove", (e) => {
 
     if (e.target.tagName === "DIV" && currentAction) {
-        currentAction();
+        currentAction(e);
+    }
+
+    if (currentAction === null) {
+        notepad.style.disabled = true;
     }
 
 })
