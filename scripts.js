@@ -120,16 +120,16 @@ sidebarListItems.forEach(li => {
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
                 createGrid();
                 currentAction = null;
-            } else if (e.target.tagName === "SPAN" && e.target.id === "eraser") {
+            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "eraser") {
                 currentAction = eraser;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" && e.target.id === "draw") {
+            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "draw") {
                 currentAction = draw;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
+            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "rgba") {
                 currentAction = rgba;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" && e.target.id === "reset") {
+            } else if (e.target.tagName === "SPAN" || e.target.tagName === "DIV" && e.target.id === "reset") {
                 currentAction = null;
                 reset();
             }
