@@ -14,8 +14,8 @@ function initialGrid() {
     const notepadWidth = notepad.style.width = `${desiredWidth}px`;
     const notepadHeight = notepad.style.height = `${desiredHeight}px`;
 
-    const cellWidth = (desiredWidth / 16) + 'px';
-    const cellHeight = (desiredHeight / 16) + 'px';
+    const cellWidth = ((desiredWidth - 4) / 16) + 'px';
+    const cellHeight = ((desiredHeight - 4) / 16) + 'px';
 
     for (let i = 0; i < gridSize; i++) {
         const squareDiv = document.createElement("div");
@@ -42,8 +42,8 @@ function createGrid() {
     const gridAmount = gridInput * gridInput;
     const notepadWidth = notepad.style.width = `${desiredWidth}px`;
     const notepadHeight = notepad.style.height = `${desiredHeight}px`;
-    const cellWidth = (desiredWidth / gridInput) + 'px';
-    const cellHeight = (desiredHeight / gridInput) + 'px';
+    const cellWidth = ((desiredWidth - 4) / gridInput) + 'px';
+    const cellHeight = ((desiredHeight - 4  ) / gridInput) + 'px';
 
     for (let i = 0; i < gridAmount; i++) {
         const squareDiv = document.createElement("div");
@@ -130,6 +130,7 @@ sidebarListItems.forEach(li => {
                 currentAction = rgba;
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "reset") {
+                currentAction = null;
                 reset();
             }
         }
