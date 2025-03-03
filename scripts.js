@@ -78,8 +78,11 @@ function rgba(e) {
     }
 }
 
-function rgbaRemove() {
-    pass;
+function reset() {
+    const childDivs = document.querySelectorAll(".notepad > div");
+    childDivs.forEach(div => {
+        div.style.backgroundColor = '';
+    });
 }
 
 
@@ -126,8 +129,8 @@ sidebarListItems.forEach(li => {
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
                 currentAction = rgba;
                 console.log(currentAction);
-            } else if (e.target.tagName === "SPAN" && e.target.id === "remove-rgba") {
-                currentAction = rgbaRemove;
+            } else if (e.target.tagName === "SPAN" && e.target.id === "reset") {
+                reset();
             }
         }
     })
