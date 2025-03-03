@@ -4,6 +4,7 @@ const sidebar = document.querySelector("[data-sidebar]");
 const sidebarListItems = document.querySelectorAll(".sidebar-list-item");
 
 let isInside = false;
+let currentAction = null;
 
 function createGrid(input) {
     const gridInput = input;
@@ -38,8 +39,9 @@ notepad.addEventListener("mousemove", (e) => {
 
     isInside = true;
 
-    if (e.target.tagName === "DIV") {
-        e.target.style.backgroundColor = 'lightblue';
+    if (e.target.tagName === "DIV" && currentAction) {
+        // e.target.style.backgroundColor = 'lightblue';
+        currentAction();
     }
 
 })
@@ -55,15 +57,40 @@ menuIconButton.addEventListener("click", () => {
     sidebar.classList.toggle("open");
 })
 
-sidebarListItems.forEach(li => {
-    li.addEventListener("click", () => {
-        
+let actionItem = sidebarListItems.forEach(li => {
+    li.addEventListener("click", (e) => {
+        /* If the list item contains the class "active", simply remove it */
         if (li.classList.contains("active")) {
             li.classList.remove("active");
         }
+        /*  else if, it does not contain the class "active",
+            check to see if any other li elements have class "active", and remove it from that li
+            then add the class "active" to the clicked li
+        */
         else if (!li.classList.contains("active")) {
             document.querySelector(".active")?.classList.remove("active");
             li.classList.add("active");
-        } 
+            console.log(e.target);
+            if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
+                createGrid(50);
+                currentAction = null;
+            } else if (e.target.tagName === "SPAN" && e.target.id === "eraser") {
+                action = eraser();
+            } else if (e.target.tagName === "SPAN" && e.target.id === "draw") {
+                action = draw();
+            } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
+                action = rgba();
+            } else if (e.target.tagName === "SPAN" && e.target.id === "remove-rgba") {
+                action = rgbaRemove();
+            }
+        }
+        return action;
     })
 })
+
+/*  Click on Add new grid size
+    A prompt will ask user to enter in grid size
+    function createGrid, will create a new grid for the user
+    automatically "active" class the draw mode and let the user draw on the new grid
+*/
+
