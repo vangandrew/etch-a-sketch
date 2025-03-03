@@ -3,7 +3,6 @@ const menuIconButton = document.querySelector("[data-menu-icon-btn]");
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarListItems = document.querySelectorAll(".sidebar-list-item");
 
-let isInside = false;
 let currentAction = null;
 
 function createGrid(input) {
