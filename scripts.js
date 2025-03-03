@@ -65,8 +65,17 @@ function eraser(e) {
     }
 }
 
-function rgba() {
-    pass;
+function rgba(e) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const a = Math.random().toFixed(2)
+
+    let rgba = (`${r}, ${g}, ${b}, ${a}`);
+
+    if (e.target.tagName === "DIV") {
+        e.target.style.backgroundColor = `rgba(${rgba})`;
+    }
 }
 
 function rgbaRemove() {
@@ -78,10 +87,6 @@ notepad.addEventListener("mousemove", (e) => {
 
     if (e.target.tagName === "DIV" && currentAction) {
         currentAction(e);
-    }
-
-    if (currentAction === null) {
-        notepad.style.disabled = true;
     }
 
 })
@@ -120,6 +125,7 @@ sidebarListItems.forEach(li => {
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
                 currentAction = rgba;
+                console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "remove-rgba") {
                 currentAction = rgbaRemove;
             }
