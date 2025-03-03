@@ -59,17 +59,9 @@ function rgbaRemove() {
 
 notepad.addEventListener("mousemove", (e) => {
 
-    isInside = true;
-
     if (e.target.tagName === "DIV" && currentAction) {
         currentAction();
     }
-
-})
-
-notepad.addEventListener("mouseout", () => {
-
-    isInside = false;
 
 })
 
@@ -85,6 +77,7 @@ sidebarListItems.forEach(li => {
             li.classList.remove("active");
             currentAction = null;
             console.log("Action cleared!")
+            console.log(currentAction);
         }
         /*  else if, it does not contain the class "active",
             check to see if any other li elements have class "active", and remove it from that li
@@ -94,13 +87,16 @@ sidebarListItems.forEach(li => {
             document.querySelector(".active")?.classList.remove("active");
             li.classList.add("active");
             console.log(e.target);
+            console.log(currentAction);
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
                 createGrid(50);
                 currentAction = null;
             } else if (e.target.tagName === "SPAN" && e.target.id === "eraser") {
                 currentAction = eraser;
+                console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw") {
                 currentAction = draw;
+                console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
                 currentAction = rgba;
             } else if (e.target.tagName === "SPAN" && e.target.id === "remove-rgba") {
