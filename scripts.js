@@ -32,7 +32,21 @@ function createGrid(input) {
     }
 }
 
-createGrid(16);
+function draw() {
+    notepad.addEventListener("mousemove", (e) => {
+        if (e.target.tagName === "DIV") {
+            e.target.style.backgroundColor = 'lightblue';
+        }
+    })
+}
+
+function eraser () {
+    notepad.addEventListener("mousemove", (e) => {
+        if (e.target.tagName === "DIV") {
+            e.target.style.backgroundColor = '';
+        }
+    })
+}
 
 
 notepad.addEventListener("mousemove", (e) => {
@@ -94,3 +108,4 @@ let actionItem = sidebarListItems.forEach(li => {
     automatically "active" class the draw mode and let the user draw on the new grid
 */
 
+createGrid(16);
