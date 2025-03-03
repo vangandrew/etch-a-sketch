@@ -48,13 +48,20 @@ function eraser () {
     })
 }
 
+function rgba() {
+    pass;
+}
+
+function rgbaRemove() {
+    pass;
+}
+
 
 notepad.addEventListener("mousemove", (e) => {
 
     isInside = true;
 
     if (e.target.tagName === "DIV" && currentAction) {
-        // e.target.style.backgroundColor = 'lightblue';
         currentAction();
     }
 
@@ -76,6 +83,8 @@ sidebarListItems.forEach(li => {
         /* If the list item contains the class "active", simply remove it */
         if (li.classList.contains("active")) {
             li.classList.remove("active");
+            currentAction = null;
+            console.log("Action cleared!")
         }
         /*  else if, it does not contain the class "active",
             check to see if any other li elements have class "active", and remove it from that li
@@ -89,13 +98,13 @@ sidebarListItems.forEach(li => {
                 createGrid(50);
                 currentAction = null;
             } else if (e.target.tagName === "SPAN" && e.target.id === "eraser") {
-                currentAction = eraser();
+                currentAction = eraser;
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw") {
-                currentAction = draw();
+                currentAction = draw;
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
-                currentAction = rgba();
+                currentAction = rgba;
             } else if (e.target.tagName === "SPAN" && e.target.id === "remove-rgba") {
-                currentAction = rgbaRemove();
+                currentAction = rgbaRemove;
             }
         }
     })
