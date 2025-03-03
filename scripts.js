@@ -5,23 +5,45 @@ const sidebarListItems = document.querySelectorAll(".sidebar-list-item");
 
 let currentAction = null;
 
-function createGrid(input) {
-    const gridInput = input;
+function initialGrid() {
+    const gridSize = 16 * 16;
+
     const desiredWidth = 800;
     const desiredHeight = 800;
 
+    const notepadWidth = notepad.style.width = `${desiredWidth}px`;
+    const notepadHeight = notepad.style.height = `${desiredHeight}px`;
+
+    const cellWidth = (desiredWidth / 16) + 'px';
+    const cellHeight = (desiredHeight / 16) + 'px';
+
+    for (let i = 0; i < gridSize; i++) {
+        const squareDiv = document.createElement("div");
+        squareDiv.style.width = cellWidth;
+        squareDiv.style.height = cellHeight;
+        notepad.append(squareDiv);
+    }
+
+}
+
+function createGrid() {
     notepad.innerHTML = '';
 
-    if (input > 100) {
+    let gridInput = prompt("Enter the number of squares per side (maximum 100): ");
+    const desiredWidth = 800;
+    const desiredHeight = 800;
+
+
+    if (gridInput > 100) {
         notepad.innerHTML = '';
         return alert("100 is the max grid amount... Try again!")
     }
 
-    const gridAmount = input * input;
+    const gridAmount = gridInput * gridInput;
     const notepadWidth = notepad.style.width = `${desiredWidth}px`;
     const notepadHeight = notepad.style.height = `${desiredHeight}px`;
-    const cellWidth = (desiredWidth / input) + 'px';
-    const cellHeight = (desiredHeight / input) + 'px';
+    const cellWidth = (desiredWidth / gridInput) + 'px';
+    const cellHeight = (desiredHeight / gridInput) + 'px';
 
     for (let i = 0; i < gridAmount; i++) {
         const squareDiv = document.createElement("div");
@@ -88,7 +110,7 @@ sidebarListItems.forEach(li => {
             console.log(e.target);
             console.log(currentAction);
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
-                createGrid(50);
+                createGrid();
                 currentAction = null;
             } else if (e.target.tagName === "SPAN" && e.target.id === "eraser") {
                 currentAction = eraser;
@@ -111,4 +133,4 @@ sidebarListItems.forEach(li => {
     automatically "active" class the draw mode and let the user draw on the new grid
 */
 
-createGrid(16);
+initialGrid()
