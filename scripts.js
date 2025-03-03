@@ -71,7 +71,7 @@ menuIconButton.addEventListener("click", () => {
     sidebar.classList.toggle("open");
 })
 
-let actionItem = sidebarListItems.forEach(li => {
+sidebarListItems.forEach(li => {
     li.addEventListener("click", (e) => {
         /* If the list item contains the class "active", simply remove it */
         if (li.classList.contains("active")) {
@@ -89,16 +89,15 @@ let actionItem = sidebarListItems.forEach(li => {
                 createGrid(50);
                 currentAction = null;
             } else if (e.target.tagName === "SPAN" && e.target.id === "eraser") {
-                action = eraser();
+                currentAction = eraser();
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw") {
-                action = draw();
+                currentAction = draw();
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba") {
-                action = rgba();
+                currentAction = rgba();
             } else if (e.target.tagName === "SPAN" && e.target.id === "remove-rgba") {
-                action = rgbaRemove();
+                currentAction = rgbaRemove();
             }
         }
-        return action;
     })
 })
 
