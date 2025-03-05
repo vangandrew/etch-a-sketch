@@ -149,6 +149,7 @@
 
 .content {
     display: flex;
+    position: relative;
     margin: 0 3rem;
 }
 
@@ -184,6 +185,7 @@
 
 .sidebar-link {
     width: 100%;
+    position: relative;
     padding: 0.5rem 0;
     text-decoration: none;
     display: flex;
@@ -231,11 +233,6 @@
     font-size: 1rem;
 }
 
-.sidebar-link-text.color-parent {
-    position: relative;
-    display: flex;
-}
-
 .color-picker {
     display: none;
 }
@@ -243,7 +240,9 @@
 .color-picker.active-color {
     display: block;
     position: absolute;
-    right: 50px;
+    top: 24%;
+    left: 10%;
+    z-index: 999;
     background-color: cadetblue;
     padding: 1rem 1.5rem;
 }
