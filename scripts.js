@@ -3,6 +3,7 @@ const menuIconButton = document.querySelector("[data-menu-icon-btn]");
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarListItems = document.querySelectorAll(".sidebar-list-item");
 const colorPicker = document.getElementById("input");
+const colorPickerContainer = document.querySelector(".color-picker");
 
 let currentAction = null;
 
@@ -110,7 +111,6 @@ sidebarListItems.forEach(li => {
     li.addEventListener("click", (e) => {
         /* If the list item contains the class "active", simply remove it */
         if (li.classList.contains("active")) {
-            const colorPickerContainer = document.querySelector(".color-picker");
             colorPickerContainer.classList.remove("active-color");
             li.classList.remove("active");
             currentAction = null;
@@ -119,13 +119,16 @@ sidebarListItems.forEach(li => {
         }
         /*  else if, it does not contain the class "active",
             check to see if any other li elements have class "active", and remove it from that li
+            also remove "active-color"
             then add the class "active" to the clicked li
         */
         else if (!li.classList.contains("active")) {
             document.querySelector(".active")?.classList.remove("active");
+            document.querySelector(".active-color")?.classList.remove("active-color");
             li.classList.add("active");
             console.log(e.target);
             console.log(currentAction);
+
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
                 currentAction = null;
                 createGrid();
@@ -133,7 +136,6 @@ sidebarListItems.forEach(li => {
                 currentAction = eraser;
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw" || e.target.tagName === "DIV" && e.target.id === "draw") {
-                const colorPickerContainer = document.querySelector(".color-picker");
                 colorPickerContainer.classList.add("active-color");
                 currentAction = draw;
                 console.log(currentAction);
@@ -144,6 +146,7 @@ sidebarListItems.forEach(li => {
                 currentAction = null;
                 reset();
             }
+            
         }
     })
 })
@@ -155,3 +158,7 @@ sidebarListItems.forEach(li => {
 */
 
 initialGrid();
+
+/* If a user clicks out of input field, remove "active-color" class
+    If .color-picker is popped up and a user clicks on a different li, remove "active-color"
+*/
