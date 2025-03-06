@@ -107,6 +107,13 @@ menuIconButton.addEventListener("click", () => {
 
 colorPicker.addEventListener("input", generateColor)
 
+document.addEventListener("click", (e) => {
+    // If user clicks inside the element or clicks on "draw", do nothing
+    if (e.target.closest(".color-picker") || (e.target.id === "draw")) return
+    // If user clicks outside the element, display none
+    colorPickerContainer.classList.remove("active-color")
+})
+
 sidebarListItems.forEach(li => {
     li.addEventListener("click", (e) => {
         /* If the list item contains the class "active", simply remove it */
@@ -138,6 +145,7 @@ sidebarListItems.forEach(li => {
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw" || e.target.tagName === "DIV" && e.target.id === "draw") {
                 colorPickerContainer.classList.add("active-color");
                 currentAction = draw;
+                // e.stopPropagation();
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba" || e.target.tagName === "DIV" && e.target.id === "rgba") {
                 currentAction = rgba;
