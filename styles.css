@@ -82,7 +82,8 @@
 
 .sidebar {
     width: 75px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    position: relative;
     height: calc(100vh - var(--header-height));
     border-right: 1px solid var(--light-gray);
     display: flex;
@@ -149,7 +150,6 @@
 
 .content {
     display: flex;
-    position: relative;
     margin: 0 3rem;
 }
 
@@ -240,9 +240,18 @@
 .color-picker.active-color {
     display: block;
     position: absolute;
-    top: 24%;
-    left: 10%;
+    top: 20%;
+    left: 100%;
+    margin-left: 24px;
     z-index: 999;
-    background-color: cadetblue;
-    padding: 1rem 1.5rem;
+    background-color: #fefefe;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+}
+
+.color-picker-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
