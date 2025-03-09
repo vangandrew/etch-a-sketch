@@ -107,11 +107,36 @@ menuIconButton.addEventListener("click", () => {
 
 colorPicker.addEventListener("input", generateColor)
 
+/* 
+Add a dedicated event listener for document level to disable drawing
+when color picker is popped up and allow drawing when color picker is disabled/not popped up
+*/
 document.addEventListener("click", (e) => {
     // If user clicks inside the element or clicks on "draw", do nothing
-    if (e.target.closest(".color-picker") || (e.target.id === "draw")) return
+    if (e.target.closest(".color-picker") || (e.target.id === "draw")) {
+        currentAction = null;
+        console.log(currentAction);
+        return
+    }
     // If user clicks outside the element, display none
-    colorPickerContainer.classList.remove("active-color")
+    colorPickerContainer.classList.remove("active-color");
+    
+    const activeItem = document.querySelector(".sidebar-list-item.active");
+    if (activeItem) {
+        if (activeItem.id === "eraser") {
+            currentAction = eraser;
+        } else if (activeItem.id === "draw") {
+            currentAction = draw;
+        } else if (activeItem.id === "rgba") {
+            currentAction = rgba;
+        } else if (activeItem.id === "reset") {
+            currentAction = reset;
+        } else {
+            currentAction = null;
+        }
+    }
+
+    console.log(currentAction);
 })
 
 sidebarListItems.forEach(li => {
@@ -144,14 +169,10 @@ sidebarListItems.forEach(li => {
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw" || e.target.tagName === "DIV" && e.target.id === "draw") {
                 colorPickerContainer.classList.add("active-color");
-                currentAction = draw;
-                // e.stopPropagation();
-                console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba" || e.target.tagName === "DIV" && e.target.id === "rgba") {
                 currentAction = rgba;
                 console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "reset" || e.target.tagName === "DIV" && e.target.id === "reset") {
-                currentAction = null;
                 reset();
             }
             
@@ -169,4 +190,5 @@ initialGrid();
 
 /* If a user clicks out of input field, remove "active-color" class
     If .color-picker is popped up and a user clicks on a different li, remove "active-color"
+    disable draw() function until .color-picker is closed
 */
