@@ -141,7 +141,8 @@
     height: 100px;
 }
 
-.middle-sidebar {
+.middle-sidebar,
+.bottom-sidebar {
     width: 100%;
     flex-grow: 1;
     overflow-y: auto;
@@ -195,6 +196,12 @@
     cursor: pointer;
 }
 
+.sidebar-link a {
+    text-decoration: none;
+    color: var(--light-gray);
+    cursor: pointer;
+}
+
 .sidebar.open .sidebar-link {
     justify-content: start;
     padding-left: 1rem;
@@ -202,6 +209,7 @@
 
 .sidebar-icon {
     font-size: 24px;
+    cursor: pointer;
 }
 
 .sidebar.open .sidebar-link-text {

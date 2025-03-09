@@ -115,7 +115,6 @@ document.addEventListener("click", (e) => {
     // If user clicks inside the element or clicks on "draw", do nothing
     if (e.target.closest(".color-picker") || (e.target.id === "draw")) {
         currentAction = null;
-        console.log(currentAction);
         return
     }
     // If user clicks outside the element, display none
@@ -136,7 +135,6 @@ document.addEventListener("click", (e) => {
         }
     }
 
-    console.log(currentAction);
 })
 
 sidebarListItems.forEach(li => {
@@ -146,8 +144,6 @@ sidebarListItems.forEach(li => {
             colorPickerContainer.classList.remove("active-color");
             li.classList.remove("active");
             currentAction = null;
-            console.log("Action cleared!")
-            console.log(currentAction);
         }
         /*  else if, it does not contain the class "active",
             check to see if any other li elements have class "active", and remove it from that li
@@ -158,20 +154,16 @@ sidebarListItems.forEach(li => {
             document.querySelector(".active")?.classList.remove("active");
             document.querySelector(".active-color")?.classList.remove("active-color");
             li.classList.add("active");
-            console.log(e.target);
-            console.log(currentAction);
 
             if (e.target.tagName === "SPAN" && e.target.id === "add-grid" || e.target.tagName === "DIV" && e.target.id === "add-grid") {
                 currentAction = null;
                 createGrid();
             } else if (e.target.tagName === "SPAN" && e.target.id === "eraser" || e.target.tagName === "DIV" && e.target.id === "eraser") {
                 currentAction = eraser;
-                console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "draw" || e.target.tagName === "DIV" && e.target.id === "draw") {
                 colorPickerContainer.classList.add("active-color");
             } else if (e.target.tagName === "SPAN" && e.target.id === "rgba" || e.target.tagName === "DIV" && e.target.id === "rgba") {
                 currentAction = rgba;
-                console.log(currentAction);
             } else if (e.target.tagName === "SPAN" && e.target.id === "reset" || e.target.tagName === "DIV" && e.target.id === "reset") {
                 reset();
             }
